@@ -1,0 +1,14 @@
+{
+  "headline": "Administración de Imagen Reloaded",
+  "subtitle": "Inicia sesión para editar y publicar el contenido del sitio.",
+  "icon": "public/resources/logo.png",
+  "style": {
+    "mode": "light",
+    "accentColor": "#B98A1D",
+    "backgroundColor": "#F8F5EE",
+    "panelColor": "#FFFDF8",
+    "textColor": "#161411",
+    "fontFamily": "DM Sans, system-ui, sans-serif",
+    "borderRadius": 14
+  }
+}
