@@ -1,0 +1,61 @@
+# Tests
+
+## Test 1 - Navegar y abrir la reserva por WhatsApp [sanity]
+Viewport: desktop
+Covers: navegación principal, CTA de conversión, datos de contacto, carga de contenido público desde GET /api/site-content
+Description: Verifica que el sitio público mantenga su flujo principal mientras consume contenido administrable.
+
+Steps:
+1. Abrir el sitio y seleccionar "Agendar hora"
+2. Confirmar que el enlace de reserva apunta a WhatsApp para +56 9 5496 5835
+3. Volver al sitio y seleccionar "Servicios"
+
+Expected: La reserva utiliza el número correcto y la sección de servicios permanece accesible con el contenido publicado.
+
+## Test 2 - Bloquear administración a visitantes anónimos
+Viewport: desktop
+Covers: acceso privado, autenticación, protección de GET /api/admin/status y PUT /api/admin/site-content
+Description: Verifica que un visitante no autenticado no pueda editar ni publicar contenido.
+
+Steps:
+1. Ir al pie de página y seleccionar "Administrar sitio"
+2. Confirmar que se muestra "Acceso de administrador"
+3. Sin iniciar sesión, comprobar que no se muestra el formulario de edición ni el botón "Guardar y publicar"
+
+Expected: La administración exige inicio de sesión y el formulario privado no está disponible para visitantes anónimos.
+
+## Test 3 - Editar y persistir contenido como administrador
+Viewport: desktop
+Covers: inicio de sesión autorizado, edición estructurada, PUT /api/admin/site-content, persistencia en base de datos, GET /api/site-content
+Description: Verifica el flujo de administración para la cuenta autorizada y la persistencia tras recargar.
+
+Steps:
+1. Abrir "Administrar sitio" e iniciar sesión con la cuenta administradora autorizada
+2. Cambiar el texto principal a "Atención personalizada en Ñuñoa" y seleccionar "Guardar y publicar"
+3. Cerrar el panel y recargar la página
+
+Expected: El texto "Atención personalizada en Ñuñoa" permanece visible después de recargar.
+
+## Test 4 - Rechazar una cuenta autenticada no autorizada
+Viewport: desktop
+Covers: allowlist de administrador, límite por correo, protección de escritura
+Description: Verifica que iniciar sesión no sea suficiente si el correo no coincide con el administrador autorizado.
+
+Steps:
+1. Abrir "Administrar sitio"
+2. Iniciar sesión con una cuenta distinta de la administradora autorizada
+3. Esperar la validación del acceso
+
+Expected: Se muestra "Cuenta sin permiso" y no aparece el formulario de edición.
+
+## Test 5 - Administrar galería y reseñas en móvil
+Viewport: mobile
+Covers: panel responsive, URLs de galería, alta y eliminación de reseñas, guardado persistente
+Description: Verifica que las áreas editables secundarias sean utilizables desde una pantalla pequeña.
+
+Steps:
+1. Como administrador autorizado, abrir "Administrar sitio" en móvil
+2. Agregar una reseña real y completar una URL pública de imagen en una tarjeta de galería
+3. Guardar los cambios y cerrar el panel
+
+Expected: El sitio muestra la reseña agregada, utiliza la imagen configurada y el panel no presenta desbordes horizontales.
